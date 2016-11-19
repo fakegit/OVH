@@ -5,5 +5,5 @@ ssh root@{0} python get-pip.py
 ssh root@{0} pip install ovh
 ssh root@{0} mkdir setupIP
 scp /root/setupProxyServer/setupProxy.zip root@{0}:/root/setupProxy/setupProxy.zip 
-ssh root@{0} "unzip -o /root/setupProxy/setupProxy.zip -d setupProxy"
+ssh root@{0} "unzip -o /root/setupProxy/setupProxy.zip -d setupProxy && rm /root/setupProxy/setupProxy.zip"
 ssh root@{0} "cd setupProxy && python setProxy.py"
