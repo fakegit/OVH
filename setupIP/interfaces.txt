@@ -1,0 +1,50 @@
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+        address 137.74.195.38
+        netmask 255.255.255.255
+        post-up /sbin/ip route add 137.74.192.1 dev eth0
+        post-up /sbin/ip route add default via 137.74.192.1
+        pre-down /sbin/ip route del default via 137.74.192.1
+        pre-down /sbin/ip route del 137.74.192.1 dev eth0
+        dns-nameserver 213.186.33.99
+        dns-search ovh.net
+
+auto eth0:0
+iface eth0:0 inet static
+        address 91.134.131.157
+		netmask 255.255.255.255
+		broadcast 91.134.131.157
+
+auto eth0:1
+iface eth0:1 inet static
+        address 91.134.131.156
+		netmask 255.255.255.255
+		broadcast 91.134.131.156
+
+auto eth0:2
+iface eth0:2 inet static
+        address 91.134.131.159
+		netmask 255.255.255.255
+		broadcast 91.134.131.159
+
+auto eth0:3
+iface eth0:3 inet static
+        address 91.134.217.156
+		netmask 255.255.255.255
+		broadcast 91.134.217.156
+
+auto eth0:4
+iface eth0:4 inet static
+        address 91.134.131.158
+		netmask 255.255.255.255
+		broadcast 91.134.131.158
+
+auto eth0:5
+iface eth0:5 inet static
+        address 91.134.131.168
+		netmask 255.255.255.255
+		broadcast 91.134.131.168
