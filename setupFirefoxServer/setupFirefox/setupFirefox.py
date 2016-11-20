@@ -93,7 +93,7 @@ with open(prefPath,"r") as pF:
 '''Creation des pref.js suivant les profils'''
 
 for i in range(len(profiles)):
-	profiles[i]["pref"] = prefConfig.format(profiles[i]["address"],profiles[i]["port"])
+	profiles[i]["pref"] = prefConfig.replace("IP_PROXY",profiles[i]["address"]).replace("PORT_PROXY",profiles[i]["port"]).replace("INDEX_PROFILE",profiles[i]["index"]).replace("NAME_PROFILE",profiles[i]["name"])
 
 '''Edition des pref.js de chaque profil'''
 
