@@ -11,6 +11,6 @@ scp /root/OVH/setupFirefoxServer/vncservers.conf root@{0}:/etc/vncserver/vncserv
 ssh root@{0} update-rc.d vncserver defaults 99
 scp /root/OVH/setupFirefoxServer/mozilla.zip root@{0}:/root/mozilla.zip
 ssh root@{0} unzip -o mozilla.zip
-ssh root@{0} mkdir /root/setupFirefox
-scp -rp /root/OVH/setupFirefoxServer/setupFirefox root@{0}:/root/setupFirefox
+ssh root@{0} rm mozilla.zip
+scp -rp /root/OVH/setupFirefoxServer/setupFirefox root@{0}:/root
 ssh root@{0} "cd /root/setupFirefox && python setupFirefox.py {1}"
