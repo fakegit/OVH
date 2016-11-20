@@ -132,7 +132,11 @@ if options[1] == "1":
 	commandsList = []
 
 	for i in commands.split('\n'):
-		commandsList.append(i.format(vps,domain))
+		if mode == "firefox":
+			commandLine = i.format(vps,domain)
+		elif mode == "proxy":
+			commandLine = i.format(vps) 
+		commandsList.append(commandLine)
 
 	'''Envoi des commandes ssh multiples'''
 
