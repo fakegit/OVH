@@ -1,5 +1,9 @@
 ssh root@{0} -oStrictHostKeyChecking=no apt-get update
 ssh root@{0} apt-get install unzip jwm xvt firefox-esr vnc4server -y
+ssh root@{0} wget https://bootstrap.pypa.io/get-pip.py
+ssh root@{0} python get-pip.py
+ssh root@{0} rm get-pip.py
+ssh root@{0} pip install ovh
 ssh root@{0} vncpasswd -f titanic9
 ssh root@{0} vncserver
 ssh root@{0} vncserver –kill :1
