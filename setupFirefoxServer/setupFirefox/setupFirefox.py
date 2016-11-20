@@ -84,6 +84,7 @@ with open(iniPath,'r') as iF:
 iniProfile = []
 for i in range(len(profiles)):
 	tempProfile = iniConfig.format(str(i),profiles[i]["name"],profiles[i]["index"])
+	iniProfile.append(tempProfile)
 
 '''Lecture du pref.js'''
 with open(prefPath,"r") as pF:
