@@ -84,7 +84,7 @@ for i in range(len(profiles)):
 	tempProfile = iniConfig.format(str(i),profiles[i]["name"],profiles[i]["index"])
 
 '''Lecture du pref.js'''
-with open(mozillaPath + "/firefox/templateProfile/pref.js","r") as pF:
+with open(mozillaPath + "/firefox/templateProfile/prefs.js","r") as pF:
 	prefConfig = pF.read()
 	
 '''Creation des pref.js suivant les profils'''
@@ -95,7 +95,7 @@ for i in range(len(profiles)):
 '''Edition des pref.js de chaque profil'''
 
 for i in range(len(profiles)):
-	with open(mozillaPath + "/firefox/" + profiles[i]["index"] + "." + profiles[i]["name"] + "/pref.js","w") as pW:
+	with open(mozillaPath + "/firefox/" + profiles[i]["index"] + "." + profiles[i]["name"] + "/prefs.js","w") as pW:
 		pW.write(profiles[i]["pref"])
 		
 '''Edition du fichier .ini'''
