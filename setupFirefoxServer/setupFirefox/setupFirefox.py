@@ -71,7 +71,7 @@ for i in range(len(secondary)):
 
 '''Copies des templates de profils'''
 for i in range(len(profiles)):
-	os.system("cp " + mozillaPath + "/firefox/templateProfile " + mozillaPath + "/firefox/" + profiles[i]["name"])
+	os.system("cp " + mozillaPath + "/firefox/templateProfile -R " + mozillaPath + "/firefox/" + profiles[i]["name"])
 	
 '''Lire le .ini'''
 with open(iniPath,'r') as iF:
