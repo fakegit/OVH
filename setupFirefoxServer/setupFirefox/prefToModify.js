@@ -1,0 +1,11 @@
+user_pref("network.proxy.backup.ftp", "{0}");
+user_pref("network.proxy.ftp", "{0}");
+user_pref("network.proxy.ftp_port", {1});
+user_pref("network.proxy.http", "{0}");
+user_pref("network.proxy.http_port", {1});
+user_pref("network.proxy.no_proxies_on", "");
+user_pref("network.proxy.share_proxy_settings", true);
+user_pref("network.proxy.socks", "{0}");
+user_pref("network.proxy.socks_port", {1});
+user_pref("network.proxy.ssl", "{0}");
+user_pref("network.proxy.ssl_port", {1});
