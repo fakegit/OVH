@@ -131,7 +131,7 @@ if options[1] == "1":
 
 	commandsList = []
 
-	for i in commands.split('\r\n'):
+	for i in commands.split('\n'):
 		commandsList.append(i.format(vps,domain))
 
 	'''Envoi des commandes ssh multiples'''
