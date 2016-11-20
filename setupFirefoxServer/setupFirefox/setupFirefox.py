@@ -15,7 +15,7 @@ import random
 alphabet = "abcdefghijklmnopqrstuvwxyz0123456789"															#Pour la creation de l'identifiant des profils
 mozillaPath = "/root/.mozilla"
 iniPath = "./partToModify.ini"
-prefPath = "./prefToModify.js"
+prefPath = mozillaPath + "/firefox/templateProfile/prefs.js"
 hostname = sys.argv[1] 	#String 'vps*.ovh.net'
 client = ovh.Client() 																						#Ovh.conf
 result = client.get('/vps/' + hostname + '/ips') 															#Retourne une liste d'IP du serveur de proxy
