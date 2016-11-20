@@ -102,7 +102,7 @@ for i in range(len(profiles)):
 		pW.write(profiles[i]["pref"])
 		
 '''Edition du fichier .ini'''
-with open(mozillaPath + "/firefox/profiles.ini","a") as iW:
+with open(mozillaPath + "/firefox/profiles.ini","w") as iW:
 	for i in iniProfile:
 		iW.write(i)
 
