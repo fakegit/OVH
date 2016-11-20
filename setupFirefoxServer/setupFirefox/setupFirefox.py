@@ -98,7 +98,7 @@ for i in range(len(profiles)):
 '''Edition des pref.js de chaque profil'''
 
 for i in range(len(profiles)):
-	with open(mozillaPath + "/firefox/" + profiles[i]["index"] + "." + profiles[i]["name"] + "/prefs.js","a") as pW:
+	with open(mozillaPath + "/firefox/" + profiles[i]["index"] + "." + profiles[i]["name"] + "/prefs.js","w") as pW:
 		pW.write(profiles[i]["pref"])
 		
 '''Edition du fichier .ini'''
