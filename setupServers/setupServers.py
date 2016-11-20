@@ -117,10 +117,10 @@ if options[1] == "1":
 	commands = ""
 	
 	if mode == "firefox":
-		commandPath = "/root/setupServers/setupFirefoxServer/commands"
+		commandPath = "/root/OVH/setupServers/setupFirefoxServer/commands"
 		domain = sys.argv[4]
 	elif mode == "proxy":
-		commandPath = "/root/setupServers/setupProxyServer/commands"
+		commandPath = "/root/OVH/setupServers/setupProxyServer/commands"
 	
 	with open(commandPath,'r') as r:
 		commands = r.read()

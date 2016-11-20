@@ -3,14 +3,14 @@ ssh root@{0} apt-get install unzip jwm xvt firefox-esr vnc4server -y
 ssh root@{0} vncpasswd -f titanic9
 ssh root@{0} vncserver
 ssh root@{0} vncserver –kill :1
-scp /root/setupFirefoxServer/xstartup root@{0}:/root/.vnc/xstartup
-scp /root/setupFirefoxServer/vncserver root@{0}:/etc/init.d/vncserver
+scp /root/OVH/setupFirefoxServer/xstartup root@{0}:/root/.vnc/xstartup
+scp /root/OVH/setupFirefoxServer/vncserver root@{0}:/etc/init.d/vncserver
 ssh root@{0} chmod +x /etc/init.d/vncserver
 ssh root@{0} mkdir -p /etc/vncserver
-scp /root/setupFirefoxServer/vncservers.conf root@{0}:/etc/vncserver/vncservers.conf
+scp /root/OVH/setupFirefoxServer/vncservers.conf root@{0}:/etc/vncserver/vncservers.conf
 ssh root@{0} update-rc.d vncserver defaults 99
-scp /root/setupFirefoxServer/mozilla.zip root@{0}:/root/mozilla.zip
+scp /root/OVH/setupFirefoxServer/mozilla.zip root@{0}:/root/mozilla.zip
 ssh root@{0} unzip -o mozilla.zip
 ssh root@{0} mkdir /root/setupFirefox
-scp -rp /root/setupFirefoxServer/setupFirefox root@{0}:/root/setupFirefox
+scp -rp /root/OVH/setupFirefoxServer/setupFirefox root@{0}:/root/setupFirefox
 ssh root@{0} "cd /root/setupFirefox && python setupFirefox.py {1}"
