@@ -72,9 +72,8 @@ for i in range(len(secondary)):
 
 '''Copies des templates de profils'''
 for i in range(len(profiles)):
-	os.system("cp " + mozillaPath + "/firefox/templateProfile -R " + mozillaPath + "/firefox/" + profiles[i]["name"])
+	os.system("cp " + mozillaPath + "/firefox/templateProfile -R " + mozillaPath + "/firefox/" + profiles[i]["index"] + "." + profiles[i]["name"])
 
-print(profiles)
 	
 '''Lire le .ini'''
 with open(iniPath,'r') as iF:
@@ -93,9 +92,6 @@ with open(prefPath,"r") as pF:
 '''Creation des pref.js suivant les profils'''
 
 for i in range(len(profiles)):
-	print(i)
-	print(prefConfig.format(profiles[i]["address"],profiles[i]["port"]))
-	print(input())
 	profiles[i]["pref"] = prefConfig.format(profiles[i]["address"],profiles[i]["port"])
 
 '''Edition des pref.js de chaque profil'''
