@@ -60,7 +60,7 @@ profiles = {}
 
 for i in range(len(secondary)):
 	index = ""
-	for i in range(8):
+	for j in range(8):
 		index = index + alphabet[random.randrange(0,len(alphabet),1)]
 	profiles[i] = {}
 	profiles[i]["index"] = index
