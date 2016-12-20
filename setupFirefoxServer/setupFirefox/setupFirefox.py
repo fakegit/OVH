@@ -45,7 +45,7 @@ for i in infos:
 		primary.append(i)
 	elif infos[i]["type"] == "additional":
 		secondary.append(i)
-		
+
 '''Obtenir l'ip principale'''
 
 principal = ""
@@ -53,7 +53,7 @@ principal = ""
 for i in primary:
 	if infos[i]["version"] == 'v4':
 		principal = i
-		
+
 
 '''Cree les informations de configuration'''
 
@@ -74,7 +74,7 @@ for i in range(len(secondary)):
 for i in range(len(profiles)):
 	os.system("cp " + mozillaPath + "/firefox/templateProfile -R " + mozillaPath + "/firefox/" + profiles[i]["index"] + "." + profiles[i]["name"])
 
-	
+
 '''Lire le .ini'''
 with open(iniPath,'r') as iF:
 	iniConfig = iF.read()
@@ -89,7 +89,7 @@ for i in range(len(profiles)):
 '''Lecture du pref.js'''
 with open(prefPath,"r") as pF:
 	prefConfig = pF.read()
-	
+
 '''Creation des pref.js suivant les profils'''
 
 for i in range(len(profiles)):
@@ -100,9 +100,8 @@ for i in range(len(profiles)):
 for i in range(len(profiles)):
 	with open(mozillaPath + "/firefox/" + profiles[i]["index"] + "." + profiles[i]["name"] + "/prefs.js","w") as pW:
 		pW.write(profiles[i]["pref"])
-		
+
 '''Edition du fichier .ini'''
 with open(mozillaPath + "/firefox/profiles.ini","w") as iW:
 	for i in iniProfile:
 		iW.write(i)
-
