@@ -19,7 +19,7 @@ class ip:
         self.access_ip = access_ip
         self.access_port = access_port
         self.used = used
-        
+
 #on suppose que les listes sont de tailles égales
 #a completer
 liste_ip = []
@@ -37,7 +37,7 @@ def construction_table():
     import_data(ips,liste_ip)
     import_data(noms,liste_nom)
     import_data(ports,liste_port)
-    
+
     for i in range(0,len(liste_ip)):
         liste_objet.append(ip(liste_nom[i],liste_ip[i],liste_port[i]))
     return 0
@@ -46,17 +46,17 @@ def reception_requete(ip):
     for i in range(0,len(liste_objet)):
         if liste_objet[i].access_ip == ip:
             if liste_objet[i].used:
-                raise NameError("ip déja occupee")
+                raise NameError("ip deja occupee")
             else:
                 liste_objet[i].used = True
     return 0
-    
+
 def envoi_proxy(ip):
-   
+
 
     return 0
 if __name__ == "__main__":
-    
+
     serveur = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     try:
         serveur.bind(ip_serveur,port_serveur)
@@ -66,5 +66,3 @@ if __name__ == "__main__":
         serveur.listen(n_co)
         connexion,addresse = serveur.accept()
         ### a completer
-    
-    
