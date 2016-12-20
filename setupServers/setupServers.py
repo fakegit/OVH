@@ -15,7 +15,7 @@ import time
 
 vps = sys.argv[1]																							#Nom du vps a configurer
 mode = sys.argv[2]																							#proxy/firefox : Mode de reinstallation
-sshK = "ssh-key"																							#Clé standard SSH
+sshK = "ssh-key"																							#ClÃ© standard SSH
 defaultLanguage = "en"																						#Language standard anglais
 client = ovh.Client()																						#Ovh.conf
 ipList = client.get('/vps/' + vps + '/ips')																	#Liste d'IP du serveur cible
@@ -25,7 +25,7 @@ try:																										#Options de reinstallations
 except IndexError:																							#10 : Reinstallation
 	options = "11"																							#01 : Configuration seulement
 
-	
+
 '''
 ###############################################################
 #                                                             #
@@ -44,7 +44,7 @@ if mode != "proxy" and mode != "firefox":
 ###############################################################
 '''
 if options[0] == "1":
-	
+
 	'''Recuperation de l'adresse IPv4 du serveur cible'''
 
 	print("Recuperation de l'adresse IPv4 du serveur cible")
@@ -52,10 +52,10 @@ if options[0] == "1":
 	infosIP = {}
 
 	for i in ipList:
-		infosIP[i] = client.get('/vps/' + vps + '/ips/' + i)	
+		infosIP[i] = client.get('/vps/' + vps + '/ips/' + i)
 
 	ipv4 = ""																									#Adresse IPV4 du serveur
-	
+
 	for i in infosIP:
 		if infosIP[i]["type"] == "primary" and infosIP[i]["version"] == "v4":
 			ipv4 = i
@@ -79,7 +79,7 @@ if options[0] == "1":
 		infosTemplates[i] = client.get("/vps/" + vps + "/templates/" + str(i))
 
 	templateID = 0
-	
+
 	for i in infosTemplates:
 		if infosTemplates[i]["distribution"] == "debian8":
 			templateID = i
@@ -89,7 +89,7 @@ if options[0] == "1":
 	print("Reinstallation avec les parametres de configuration")
 
 	task = client.post("/vps/" + vps + "/reinstall",doNotSendPassword=False,language="en",sshKey=["ssh-key"],templateId=templateID)
-	
+
 	'''Attente de la fin de la reinstallation'''
 
 	print("Attente de la fin de la reinstallation")
@@ -102,7 +102,7 @@ if options[0] == "1":
 		time.sleep(3)
 else:
 	print("Skipping reinstallation")
-	
+
 '''
 ###############################################################
 #                                                             #
@@ -115,16 +115,16 @@ if options[1] == "1":
 
 	print("Recuperation des commandes")
 	commands = ""
-	
+
 	if mode == "firefox":
 		commandPath = "/root/OVH/setupFirefoxServer/commands"
 		domain = sys.argv[4]
 	elif mode == "proxy":
 		commandPath = "/root/OVH/setupProxyServer/commands"
-	
+
 	with open(commandPath,'r') as r:
 		commands = r.read()
-	
+
 	'''Separation des nouvelles lignes (une commande par ligne) + formatage avec l'ip'''
 
 	print("Separation des nouvelles lignes (une commande par ligne) + formatage avec l'ip")
@@ -135,7 +135,7 @@ if options[1] == "1":
 		if mode == "firefox":
 			commandLine = i.format(vps,domain)
 		elif mode == "proxy":
-			commandLine = i.format(vps) 
+			commandLine = i.format(vps)
 		commandsList.append(commandLine)
 
 	'''Envoi des commandes ssh multiples'''
@@ -145,5 +145,8 @@ if options[1] == "1":
 	for i in commandsList:
 		print("Sending :",i)
 		os.system(i)
+
+	os.system("python ../webServers/setServer.py " + str(vps) + " " + str(mode))
+
 else:
 	print("Skipping configuration")
