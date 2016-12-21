@@ -3,6 +3,5 @@ ssh root@{0} apt-get install unzip squid3 -y
 ssh root@{0} wget https://bootstrap.pypa.io/get-pip.py
 ssh root@{0} python get-pip.py
 ssh root@{0} pip install ovh
-ssh root@{0} mkdir setupIP
 scp -rp /root/OVH/setupProxyServer/setupProxy root@{0}:/root
 ssh root@{0} "cd setupProxy && python setupProxy.py"
