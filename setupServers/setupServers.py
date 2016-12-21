@@ -17,6 +17,7 @@ vps = sys.argv[1]																							#Nom du vps a configurer
 mode = sys.argv[2]																							#proxy/firefox : Mode de reinstallation
 sshK = "ssh-key"																							#Clé standard SSH
 defaultLanguage = "en"																						#Language standard anglais
+hostname = subprocess.Popen(["hostname"],stdout=subprocess.PIPE).communicate()[0].decode().split('\n')[0]
 client = ovh.Client()																						#Ovh.conf
 ipList = client.get('/vps/' + vps + '/ips')																	#Liste d'IP du serveur cible
 
