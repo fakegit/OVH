@@ -14,7 +14,7 @@ import os
 apachePath = "/etc/apache2/apache2.conf"
 apacheModif = "<Directory /var/www/html/cgi-scripts>\n	Allow from all\n	Options FollowSymLinks\n	Options +ExecCGI\n	AddHandler cgi-script .py\n</Directory>"
 hostname = subprocess.Popen(["hostname"],stdout=subprocess.PIPE).communicate()[0].decode().split('\n')[0]
-setupServerCommands = ["ssh root@{0} apt-get apache2" , "ssh root@{0} sudo service apache2 restart"]
+setupServerCommands = ["ssh root@{0} sudo service apache2 restart"]
 
 '''
 ###############################################################
