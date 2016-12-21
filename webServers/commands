@@ -1,6 +1,6 @@
 scp -rp /root/OVH/webServers/webServer{1} root@{0}:/root/webServer
 scp -rp /root/OVH/webServers/setupServer.py root@{0}:/root/webServer/setupServer.py
-ssh root@{0} apt-get apache2
+ssh root@{0} apt-get install apache2
 ssh root@{0} rm /var/www/html -R
 ssh root@{0} ln -s /var/www/html /root/webServer
 ssh root@{0} chmod +x -R /root/webServer
