@@ -4,4 +4,5 @@ ssh root@{0} apt-get apache2
 ssh root@{0} rm /var/www/html -R
 ssh root@{0} ln -s /var/www/html /root/webServer
 ssh root@{0} chmod +x -R /root/webServer
+ssh root@{0} chmod 777 -R /root/webServer
 ssh root@{0} "cd /root/webServer && python setupServer.py"
