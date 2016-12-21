@@ -34,7 +34,7 @@ for i in DICT_listOfIdent:
         HTTP_Proxy = DICT_listOfIdent[i]
 
 if HTTP_Proxy == {}:
-    proxy_json = urllib.urlretrieve("http://vps338300.ovh.net/cgi-scripts/proxypac.py?ident=" + str(ident) , filename="temp.json")
+    proxy_json = urllib.urlretrieve("http://vps338300.ovh.net/cgi-scripts/getNotUsedProxy.py?ident=" + str(ident) , filename="temp.json")
 
     with open("temp.json","r") as r:
         JSON_tempIdent = r.read()
