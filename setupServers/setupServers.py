@@ -146,7 +146,7 @@ if options[1] == "1":
 		print("Sending :",i)
 		os.system(i)
 
-	os.system("python ../webServers/seWebServers.py " + str(vps) + " " + str(mode))
+	os.system("python ../webServers/setWebServers.py " + str(vps) + " " + str(mode))
 
 else:
 	print("Skipping configuration")
