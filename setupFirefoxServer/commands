@@ -13,6 +13,8 @@ ssh root@{0} chmod +x /etc/init.d/vncserver
 ssh root@{0} mkdir -p /etc/vncserver
 scp /root/OVH/setupFirefoxServer/vncservers.conf root@{0}:/etc/vncserver/vncservers.conf
 ssh root@{0} update-rc.d vncserver defaults 99
+rm /root/OVH/setupFirefoxServer/mozilla.zip
+zip /root/OVH/setupFirefoxServer/mozilla.zip /root/OVH/setupFirefoxServer/.mozilla -r
 scp /root/OVH/setupFirefoxServer/mozilla.zip root@{0}:/root/mozilla.zip
 ssh root@{0} unzip -o mozilla.zip
 ssh root@{0} rm mozilla.zip
