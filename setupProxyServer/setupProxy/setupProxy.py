@@ -60,7 +60,7 @@ for i in infos:
 		primary.append(i)
 	elif infos[i]["type"] == "additional":
 		secondary.append(i)
-		
+
 '''Obtenir l'ip principale (pour squid)'''
 
 principal = ""
@@ -75,19 +75,19 @@ getIPS = {}
 
 for i in range(len(secondary)):
 	getIPS[i] = secondary[i]
-	
+
 '''Création des configs formattées'''
 
 configs = []
 
 for i in getIPS:
 	configs.append(config.format(i,getIPS[i]))
-	
+
 with open(interfacePath,"a") as f:
 	for i in configs:
 		f.write(i)
 
-		
+
 '''
 ###############################################################
 #                                                             #
@@ -100,11 +100,11 @@ with open(interfacePath,"a") as f:
 
 with open('./defaultConfSquid.conf','r') as dfs:
 	config_squid = dfs.read()
-	
+
 defaultPort = 3128
-	
+
 '''Création des configs non formattées'''
-	
+
 http = "http_port " + principal + ":{0} name={0}\n" 	#0: Port
 acl = "acl port{0} myportname {0}\n" 					#0: Port
 http_access = "http_access allow port{0}\n" 			#0: Port
@@ -114,6 +114,7 @@ tcp = "tcp_outgoing_address {0} port{1}\n"  			#0: IP SECONDAIRE , 1:Port
 
 https = ""
 acls = ""
+
 http_accesss = ""
 tcps = ""
 
@@ -131,7 +132,7 @@ new_config_squid = config_squid.format(https,acls,http_accesss,tcps)
 
 with open(squidPath,'w') as w:
 	w.write(new_config_squid)
-	
+
 '''
 ###############################################################
 #                                                             #
@@ -139,6 +140,15 @@ with open(squidPath,'w') as w:
 #                                                             #
 ###############################################################
 '''
+
+'''Creation d'un fichier utile pour un processus recurrent'''
+fileP = ""
+
+for i in range(len(secondary)):
+	fileP = fileP + str(secondary[i]) + " " + principal + ":" + str(defaultPort + i) + "\n"
+
+with open("proxy.txt","w") as w:
+	w.write(fileP)
 
 os.system("sudo service networking restart")
 os.system("sudo service squid3 restart")

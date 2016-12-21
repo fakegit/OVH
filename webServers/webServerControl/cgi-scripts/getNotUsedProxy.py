@@ -8,7 +8,9 @@ va les interpreter et renverra sous la forme d'un fichier .pac le premier proxy 
 import cgi
 import cgitb
 import json
+import urllib
 cgitb.enable(format='text')
+
 def extractContentFromProxy(proxy_list,ident,proxy_to_use):
     new_json = {}
     new_json[ident] = {}
@@ -27,8 +29,10 @@ try:
     with open("proxy_list.json","r") as r:
         proxy_list = r.read()
 except:
-    #METTRE ICI DE QUOI RECUPERER LA LISTE DES PROXYS DISPONIBLES
-    t = 2
+    proxy_json = urllib.urlretrieve("http://vps338300.ovh.net/cgi-scripts/getAllProxys.py", filename="temp.json")
+    with open("temp.json","r") as r:
+        proxy_list = r.read()
+    os.system('rm temp.json')
 
 DICT_proxy_list = json.loads(proxy_list)
 proxy_to_use = ""
