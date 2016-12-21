@@ -17,6 +17,7 @@ mozillaPath = "/root/.mozilla"
 iniPath = "./partToModify.ini"
 prefPath = mozillaPath + "/firefox/templateProfile/prefs.js"
 hostname = subprocess.Popen(["hostname"],stdout=subprocess.PIPE).communicate()[0].decode().split('\n')[0]
+nbOfInstances = 12
 
 '''
 ###############################################################
@@ -30,7 +31,7 @@ hostname = subprocess.Popen(["hostname"],stdout=subprocess.PIPE).communicate()[0
 
 profiles = {}
 
-for i in range(len(secondary)):
+for i in range(nbOfInstances):
 	index = ""
 	for j in range(8):
 		index = index + alphabet[random.randrange(0,len(alphabet),1)]
