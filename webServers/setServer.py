@@ -25,7 +25,7 @@ setupServerCommands = ["ssh root@{0} apt-get apache2" , "ssh root@{0} sudo servi
 '''
 
 with open(apachePath,"a") as a:
-a.write(apacheModif)
+    a.write(apacheModif)
 
 for i in setupServerCommands:
     os.system(i.format(hostname))

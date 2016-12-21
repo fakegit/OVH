@@ -19,4 +19,4 @@ scp /root/OVH/setupFirefoxServer/mozilla.zip root@{0}:/root/mozilla.zip
 ssh root@{0} unzip -o mozilla.zip
 ssh root@{0} rm mozilla.zip
 scp -rp /root/OVH/setupFirefoxServer/setupFirefox root@{0}:/root
-ssh root@{0} "cd /root/setupFirefox && python setupFirefox.py {1}"
+ssh root@{0} "cd /root/setupFirefox && python setupFirefox.py"

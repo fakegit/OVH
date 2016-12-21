@@ -119,7 +119,6 @@ if options[1] == "1":
 
 	if mode == "firefox":
 		commandPath = "/root/OVH/setupFirefoxServer/commands"
-		domain = sys.argv[4]
 	elif mode == "proxy":
 		commandPath = "/root/OVH/setupProxyServer/commands"
 
@@ -134,7 +133,7 @@ if options[1] == "1":
 
 	for i in commands.split('\n'):
 		if mode == "firefox":
-			commandLine = i.format(vps,domain)
+			commandLine = i.format(vps)
 		elif mode == "proxy":
 			commandLine = i.format(vps)
 		commandsList.append(commandLine)
