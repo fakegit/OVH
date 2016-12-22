@@ -9,6 +9,8 @@ import cgi
 import cgitb
 import json
 import urllib
+import os
+
 cgitb.enable(format='text')
 
 def extractContentFromProxy(proxy_list,ident,proxy_to_use):
