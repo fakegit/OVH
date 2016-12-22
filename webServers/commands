@@ -1,8 +1,8 @@
-scp -rp /root/OVH/webServers/webServer{1} root@{0}:/root/webServer
-scp -rp /root/OVH/webServers/setupServer.py root@{0}:/root/webServer/setupServer.py
+scp -rp /root/OVH/webServers/webServer{1} root@{0}:/var/www/webServer
+scp -rp /root/OVH/webServers/setupServer.py root@{0}:/var/www/webServer/setupServer.py
 ssh root@{0} apt-get install -y apache2
 ssh root@{0} rm /var/www/html -R
-ssh root@{0} ln -s /root/webServer /var/www/html
-ssh root@{0} chmod +x -R /root/webServer
-ssh root@{0} chmod 777 -R /root/webServer
-ssh root@{0} "cd /root/webServer && python setupServer.py"
+ssh root@{0} chmod +x -R /var/www/webServer
+ssh root@{0} chmod 775 -R /var/www/webServer
+ssh root@{0} chown www-data -R /var/www/webServer
+ssh root@{0} "cd /var/www/webServer && python setupServer.py"
