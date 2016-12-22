@@ -5,3 +5,5 @@ ssh root@{0} python get-pip.py
 ssh root@{0} pip install ovh
 scp -rp /root/OVH/setupProxyServer/setupProxy root@{0}:/root
 ssh root@{0} "cd setupProxy && python setupProxy.py"
+cd ../webServers && python setWebServers.py {0} proxy
+ssh root@{0} reboot

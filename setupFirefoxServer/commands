@@ -9,6 +9,7 @@ ssh root@{0} screen -S VNCConf -p 0 -X stuff "titanic9^M"
 ssh root@{0} screen -S VNCConf -p 0 -X stuff "titanic9^M"
 ssh root@{0} vncserver -kill :1
 scp /root/OVH/setupFirefoxServer/xstartup root@{0}:/root/.vnc/xstartup
+ssh root@{0} chmod 777 /root/.vnc/xstartup
 scp /root/OVH/setupFirefoxServer/vncserver root@{0}:/etc/init.d/vncserver
 ssh root@{0} chmod +x /etc/init.d/vncserver
 ssh root@{0} mkdir -p /etc/vncserver
@@ -21,4 +22,5 @@ ssh root@{0} "unzip -o mozilla.zip"
 ssh root@{0} rm mozilla.zip
 scp -rp /root/OVH/setupFirefoxServer/setupFirefox root@{0}:/root
 ssh root@{0} "cd /root/setupFirefox && python setupFirefox.py"
+cd ../webServers && python setWebServers.py {0} firefox
 ssh root@{0} reboot
