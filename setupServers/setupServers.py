@@ -17,6 +17,7 @@ vps = sys.argv[1]																							#Nom du vps a configurer
 mode = sys.argv[2]																							#proxy/firefox : Mode de reinstallation
 sshK = "ssh-key"																							#Clé standard SSH
 defaultLanguage = "en"																						#Language standard anglais
+hostname = subprocess.Popen(["hostname"],stdout=subprocess.PIPE).communicate()[0].decode().split('\n')[0]
 client = ovh.Client()																						#Ovh.conf
 ipList = client.get('/vps/' + vps + '/ips')																	#Liste d'IP du serveur cible
 
@@ -118,7 +119,6 @@ if options[1] == "1":
 
 	if mode == "firefox":
 		commandPath = "/root/OVH/setupFirefoxServer/commands"
-		domain = sys.argv[4]
 	elif mode == "proxy":
 		commandPath = "/root/OVH/setupProxyServer/commands"
 
@@ -133,7 +133,7 @@ if options[1] == "1":
 
 	for i in commands.split('\n'):
 		if mode == "firefox":
-			commandLine = i.format(vps,domain)
+			commandLine = i.format(vps)
 		elif mode == "proxy":
 			commandLine = i.format(vps)
 		commandsList.append(commandLine)
@@ -145,8 +145,6 @@ if options[1] == "1":
 	for i in commandsList:
 		print("Sending :",i)
 		os.system(i)
-
-	os.system("python ../webServers/setServer.py " + str(vps) + " " + str(mode))
 
 else:
 	print("Skipping configuration")

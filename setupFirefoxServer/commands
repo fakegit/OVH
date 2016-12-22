@@ -4,17 +4,23 @@ ssh root@{0} wget https://bootstrap.pypa.io/get-pip.py
 ssh root@{0} python get-pip.py
 ssh root@{0} rm get-pip.py
 ssh root@{0} pip install ovh
-ssh root@{0} vncpasswd -f titanic9
-ssh root@{0} vncserver
+ssh root@{0} "screen -d -m -S VNCConf vncserver"
+ssh root@{0} screen -S VNCConf -p 0 -X stuff "titanic9^M"
+ssh root@{0} screen -S VNCConf -p 0 -X stuff "titanic9^M"
 ssh root@{0} vncserver -kill :1
 scp /root/OVH/setupFirefoxServer/xstartup root@{0}:/root/.vnc/xstartup
+ssh root@{0} chmod 777 /root/.vnc/xstartup
 scp /root/OVH/setupFirefoxServer/vncserver root@{0}:/etc/init.d/vncserver
 ssh root@{0} chmod +x /etc/init.d/vncserver
 ssh root@{0} mkdir -p /etc/vncserver
 scp /root/OVH/setupFirefoxServer/vncservers.conf root@{0}:/etc/vncserver/vncservers.conf
 ssh root@{0} update-rc.d vncserver defaults 99
+rm /root/OVH/setupFirefoxServer/mozilla.zip
+cd /root/OVH/setupFirefoxServer && zip mozilla.zip .mozilla -r && cd /root/OVH/setupServers
 scp /root/OVH/setupFirefoxServer/mozilla.zip root@{0}:/root/mozilla.zip
-ssh root@{0} unzip -o mozilla.zip
+ssh root@{0} "unzip -o mozilla.zip"
 ssh root@{0} rm mozilla.zip
 scp -rp /root/OVH/setupFirefoxServer/setupFirefox root@{0}:/root
-ssh root@{0} "cd /root/setupFirefox && python setupFirefox.py {1}"
+ssh root@{0} "cd /root/setupFirefox && python setupFirefox.py"
+cd ../webServers && python setWebServers.py {0} firefox
+ssh root@{0} reboot
