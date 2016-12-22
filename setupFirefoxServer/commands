@@ -5,8 +5,8 @@ ssh root@{0} python get-pip.py
 ssh root@{0} rm get-pip.py
 ssh root@{0} pip install ovh
 ssh root@{0} "screen -d -m -S VNCConf vncserver"
-ssh root@{0} screen -S Server -p 0 -X stuff "titanic9^M"
-ssh root@{0} screen -S Server -p 0 -X stuff "titanic9^M"
+ssh root@{0} screen -S VNCConf -p 0 -X stuff "titanic9^M"
+ssh root@{0} screen -S VNCConf -p 0 -X stuff "titanic9^M"
 ssh root@{0} vncserver -kill :1
 scp /root/OVH/setupFirefoxServer/xstartup root@{0}:/root/.vnc/xstartup
 scp /root/OVH/setupFirefoxServer/vncserver root@{0}:/etc/init.d/vncserver
