@@ -33,7 +33,7 @@ if mode == "firefox":
         print("Sending :",i.format(vps,"Proxy"))
         os.system(i.format(vps,"Firefox"))
 elif mode == "proxy":
-    commandList = commandList + "\n" + '"mv /root/setupProxy/proxy.txt ../webServer/cgi-scripts/proxy.txt"'
+    commandList = commandList + "\n" + '"mv /root/setupProxy/proxy.txt /root/webServer/cgi-scripts/proxy.txt"'
     for i in commandList.split("\n"):
         print("Sending :",i.format(vps,"Proxy"))
         os.system(i.format(vps,"Proxy"))
