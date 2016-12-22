@@ -8,3 +8,4 @@ ssh root@{0} chown www-data -R /var/www/webServer
 ssh root@{0} "cd /var/www/webServer && python setupServer.py"
 ssh root@{0} rm /var/www/html -R
 ssh root@{0} a2enmod cgi
+ssh root@{0} service apache2 restart
