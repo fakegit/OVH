@@ -1,7 +1,9 @@
-scp -rp /root/OVH/webServers/webServer{1} root@{0}:/var/www/webServer
+scp -rp /root/OVH/webServers/webServer{1} root@{0}:/var/www
+ssh root@{0} mv /var/www/webServer{1} /var/www/webServer
 scp -rp /root/OVH/webServers/setupServer.py root@{0}:/var/www/webServer/setupServer.py
 ssh root@{0} apt-get install -y apache2
 ssh root@{0} rm /var/www/html -R
+ssh root@{0} a2enmod cgi
 ssh root@{0} chmod +x -R /var/www/webServer
 ssh root@{0} chmod 775 -R /var/www/webServer
 ssh root@{0} chown www-data -R /var/www/webServer
