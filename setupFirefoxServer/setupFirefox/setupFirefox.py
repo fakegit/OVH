@@ -81,7 +81,7 @@ with open(mozillaPath + "/firefox/profiles.ini","w") as iW:
 
 
 '''Imacros Stuff'''
-for i in range(nbInstances):
+for i in range(nbOfInstances):
 	for j in iMS:
 		os.system(j.format(str(i)))
 	with open("/etc/service/firefox{0}".format(str(i)),"w") as w:

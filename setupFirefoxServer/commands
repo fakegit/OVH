@@ -22,13 +22,13 @@ ssh root@{0} 'unzip -o mozilla.zip'
 ssh root@{0} rm mozilla.zip
 ssh root@{0} mkdir /root/iMacros
 ssh root@{0} mkdir /root/iMacros/Macros
-scp -rp /root/OVH/setupFirefoxServer/autosurf.iim root{0}:/root/iMacros/Macros
+scp -rp /root/OVH/setupFirefoxServer/autosurf.iim root@{0}:/root/iMacros/Macros
 scp -rp /root/OVH/setupFirefoxServer/setupFirefox root@{0}:/root
 ssh root@{0} /etc/rc.local csh -cf 'svscanboot &'
 ssh root@{0} sed -i "1 a\csh -cf \'svscanboot &\'" /etc/rc.local
 ssh root@{0} chmod +x /etc/
 ssh root@{0} mkdir /etc/service
 ssh root@{0} 'cd /root/setupFirefox && python setupFirefox.py'
-ssh root@{0} cd ../webServers && python setWebServers.py {0} firefox
+ssh root@{0} 'cd /root/webServers && python setWebServers.py {0} firefox'
 ssh root@{0} cpulimit -e firefox -l 70
 ssh root@{0} reboot
