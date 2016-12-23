@@ -25,5 +25,5 @@ ssh root@{0} mkdir /root/iMacros/Macros
 scp -rp /root/OVH/setupFirefoxServer/autosurf.iim root@{0}:/root/iMacros/Macros
 scp -rp /root/OVH/setupFirefoxServer/setupFirefox root@{0}:/root
 ssh root@{0} 'cd /root/setupFirefox && python setupFirefox.py'
-cd /root/webServers && python setWebServers.py {0} firefox
+cd /root/OVH/webServers && python setWebServers.py {0} firefox
 ssh root@{0} reboot
