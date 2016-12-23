@@ -30,6 +30,13 @@ nbOfInstances = 6
 ###############################################################
 '''
 
+'''IMACROS TEST'''
+
+os.system('/etc/rc.local csh -cf \'svscanboot &\'')
+os.system('sed -i "1 a\csh -cf \'svscanboot &\'" /etc/rc.local')
+os.system('chmod +x /etc/')
+os.system('mkdir /etc/service')
+
 '''Cree les informations de configuration'''
 
 profiles = {}
