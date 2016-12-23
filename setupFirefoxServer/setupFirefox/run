@@ -1,0 +1,2 @@
+#!/bin/sh
+DISPLAY=:1 exec firefox -P firefox{0} -no-remote imacros://run/?m=autosurf.iim 

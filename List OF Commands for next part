@@ -1,0 +1,11 @@
+apt-get install cpulimit daemontools csh wget
+/etc/rc.local csh -cf 'svscanboot &'
+sed -i "1 a\csh -cf 'svscanboot &'" /etc/rc.local
+chmod +x /etc/
+mkdir /etc/service
+cd /etc/service
+mkdir firefox1
+cd firefox1
+Envoyer un script :
+#!/bin/sh
+DISPLAY=:1 exec firefox -p firefoxN -no-remote imacros://run/?m=autosurf.iim 
