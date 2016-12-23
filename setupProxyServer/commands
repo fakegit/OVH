@@ -1,4 +1,5 @@
-ssh root@{0} -oStrictHostKeyChecking=no apt-get update
+ssh root@{0} -oStrictHostKeyChecking=no
+apt-get update
 ssh root@{0} apt-get install unzip squid3 -y
 ssh root@{0} wget https://bootstrap.pypa.io/get-pip.py
 ssh root@{0} python get-pip.py
