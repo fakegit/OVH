@@ -112,6 +112,7 @@ else:
 ###############################################################
 '''
 if options[1] == "1":
+
 	'''Recuperation des commandes'''
 
 	print("Recuperation des commandes")

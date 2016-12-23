@@ -13,6 +13,17 @@ import os
 
 cgitb.enable(format='text')
 
+'''Cette fonction permet d'aléger le code présent dans le serveur firefox en permettant de formater le dictionnaire de maniere préétablie avec l'identifiant comme ceci:
+
+{
+    "IDENT_FIREFOX": {
+        "host": "PROXY_VPS_PRINCIPAL_IP",
+        "port": PROXY_VPS_PORT_SQUID3
+    }
+}
+'''
+
+
 def extractContentFromProxy(proxy_list,ident,proxy_to_use):
     new_json = {}
     new_json[ident] = {}
@@ -24,8 +35,22 @@ def extractContentFromProxy(proxy_list,ident,proxy_to_use):
 print('Content-type: application/json')
 print('Content-Disposition: attachment; filename=proxy.json\n')
 
+'''Ici , nous recuperrons l'identifiant firefox donné en argument'''
+
 formulaire = cgi.FieldStorage()
 ident = cgi.escape(formulaire.getvalue("ident"))
+
+'''Ici , nous recuperons une liste de proxy sous la forme :
+
+
+{
+    "PROXY_IP" : {
+        host: "PROXY_VPS_PRINCIPAL_IP",
+        port: PROXY_VPS_PORT_SQUID3
+        usedBy: ""
+    }, ...
+}
+'''
 
 try:
     with open("proxy_list.json","r") as r:
@@ -35,6 +60,8 @@ except:
     with open("temp.json","r") as r:
         proxy_list = r.read()
     os.system('rm temp.json')
+
+'''Nous transformons la chaine en dictionnaire'''
 
 DICT_proxy_list = json.loads(proxy_list)
 proxy_to_use = ""
@@ -54,5 +81,7 @@ STRING_proxy_list = json.dumps(DICT_proxy_list)
 
 with open("proxy_list.json","w") as w:
     w.write(STRING_proxy_list)
+
+'''Puis nous les envoyons '''
 
 print(json.dumps(json_to_send))

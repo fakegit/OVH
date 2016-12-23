@@ -20,11 +20,23 @@ cgitb.enable(format='text')
 formulaire = cgi.FieldStorage()
 ident = cgi.escape(formulaire.getvalue("ident"))
 
+
+'''Recupere une liste de proxy deja présente sous la forme :
+
+{
+    "IDENT": {
+        "host": "PROXY_VPS_PRINCIPAL_IP",
+        "port": PROXY_VPS_PORT_SQUID3,
+    } ...
+}
+'''
+
 try:
     with open("ident.json" ,"r") as r:
         listOfIdent = r.read()
 except:
     listOfIdent = "{}"
+    '''Sinon , cette liste est vide'''
 
 DICT_listOfIdent = json.loads(listOfIdent)
 HTTP_Proxy = {}
