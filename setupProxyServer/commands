@@ -1,10 +1,9 @@
-ssh root@{0} -oStrictHostKeyChecking=no
-apt-get update
+ssh root@{0} -oStrictHostKeyChecking=no apt-get update
 ssh root@{0} apt-get install unzip squid3 -y
 ssh root@{0} wget https://bootstrap.pypa.io/get-pip.py
 ssh root@{0} python get-pip.py
 ssh root@{0} pip install ovh
 scp -rp /root/OVH/setupProxyServer/setupProxy root@{0}:/root
-ssh root@{0} 'cd setupProxy && python setupProxy.py'
+ssh root@{0} "cd setupProxy && python setupProxy.py"
 cd ../webServers && python setWebServers.py {0} proxy
 ssh root@{0} reboot
