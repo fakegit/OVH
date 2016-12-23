@@ -81,8 +81,6 @@ with open(mozillaPath + "/firefox/profiles.ini","w") as iW:
 
 
 '''Imacros Stuff'''
-
-
 for i in range(nbInstances):
 	for j in iMS:
 		os.system(j.format(str(i)))
