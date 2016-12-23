@@ -18,6 +18,7 @@ mode = sys.argv[2]																							#proxy/firefox : Mode de reinstallation
 sshK = "ssh-key"																							#Clé standard SSH
 defaultLanguage = "en"																						#Language standard anglais
 hostname = subprocess.Popen(["hostname"],stdout=subprocess.PIPE).communicate()[0].decode().split('\n')[0]
+screenAppend = 'screen -S PythonSetup -p 0 -X stuff '"{0}"'
 client = ovh.Client()																						#Ovh.conf
 ipList = client.get('/vps/' + vps + '/ips')																	#Liste d'IP du serveur cible
 
@@ -44,6 +45,10 @@ if mode != "proxy" and mode != "firefox":
 #                                                             #
 ###############################################################
 '''
+
+'''Creation d'un screen pour eviter de voir les commandes'''
+os.system("screen -dmS PythonSetup")
+
 if options[0] == "1":
 
 	'''Recuperation de l'adresse IPv4 du serveur cible'''
@@ -65,8 +70,8 @@ if options[0] == "1":
 
 	print("Suppression du vps de la liste des hotes connus")
 
-	os.system('ssh-keygen -f "/root/.ssh/known_hosts" -R {}'.format(vps))										#Suppression du nom d'hote
-	os.system('ssh-keygen -f "/root/.ssh/known_hosts" -R {}'.format(ipv4))										#Suppression de l'adresse IP
+	os.system(screenAppend.format('ssh-keygen -f "/root/.ssh/known_hosts" -R {}'.format(vps)))										#Suppression du nom d'hote
+	os.system(screenAppend.format('ssh-keygen -f "/root/.ssh/known_hosts" -R {}'.format(ipv4)))										#Suppression de l'adresse IP
 
 	'''Recuperation du template de Debian 8'''
 
@@ -134,9 +139,9 @@ if options[1] == "1":
 
 	for i in commands.split('\n'):
 		if mode == "firefox":
-			commandLine = i.format(vps)
+			commandLine = screenAppend.format(i.format(vps))
 		elif mode == "proxy":
-			commandLine = i.format(vps)
+			commandLine = screenAppend.format(i.format(vps))
 		commandsList.append(commandLine)
 
 	'''Envoi des commandes ssh multiples'''
