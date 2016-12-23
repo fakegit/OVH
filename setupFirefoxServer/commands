@@ -30,5 +30,4 @@ ssh root@{0} chmod +x /etc/
 ssh root@{0} mkdir /etc/service
 ssh root@{0} 'cd /root/setupFirefox && python setupFirefox.py'
 ssh root@{0} 'cd /root/webServers && python setWebServers.py {0} firefox'
-ssh root@{0} cpulimit -e firefox -l 70
 ssh root@{0} reboot

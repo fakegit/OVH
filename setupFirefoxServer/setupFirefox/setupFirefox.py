@@ -84,7 +84,7 @@ with open(mozillaPath + "/firefox/profiles.ini","w") as iW:
 for i in range(nbOfInstances):
 	for j in iMS:
 		os.system(j.format(str(i)))
-	with open("/etc/service/firefox{0}".format(str(i)),"w") as w:
+	with open("/etc/service/firefox{0}/run".format(str(i)),"w") as w:
 		w.write(script.format(i))
 	for j in iMS_A:
 		os.system(j.format(str(i)))
