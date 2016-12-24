@@ -17,7 +17,10 @@ mozillaPath = "/root/.mozilla"
 iniPath = "./partToModify.ini"
 prefPath = mozillaPath + "/firefox/templateProfile/prefs.js"
 hostname = subprocess.Popen(["hostname"],stdout=subprocess.PIPE).communicate()[0].decode().split('\n')[0]
-nbOfInstances = 12
+iMS = ["mkdir /etc/service/firefox{0}","cp /root/setupFirefox/run /etc/service/firefox{0}"]
+iMS_A = ["chmod 755 /etc/service/firefox{0}/run","chmod 1755 /etc/service/firefox{0}"]
+script = "#!/bin/sh\nDISPLAY=:1 exec firefox -P firefox{0} -no-remote imacros://run/?m=autosurf.iim"
+nbOfInstances = 6
 
 '''
 ###############################################################
@@ -26,6 +29,13 @@ nbOfInstances = 12
 #                                                             #
 ###############################################################
 '''
+
+'''IMACROS TEST'''
+
+os.system('/etc/rc.local csh -cf \'svscanboot &\'')
+os.system('sed -i "1 a\csh -cf \'svscanboot &\'" /etc/rc.local')
+os.system('chmod +x /etc/')
+os.system('mkdir /etc/service')
 
 '''Cree les informations de configuration'''
 
@@ -75,3 +85,13 @@ for i in range(len(profiles)):
 with open(mozillaPath + "/firefox/profiles.ini","w") as iW:
 	for i in iniProfile:
 		iW.write(i)
+
+
+'''Imacros Stuff'''
+for i in range(nbOfInstances):
+	for j in iMS:
+		os.system(j.format(str(i)))
+	with open("/etc/service/firefox{0}/run".format(str(i)),"w") as w:
+		w.write(script.format(i))
+	for j in iMS_A:
+		os.system(j.format(str(i)))

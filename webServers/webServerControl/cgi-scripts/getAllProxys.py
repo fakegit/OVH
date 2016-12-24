@@ -50,4 +50,4 @@ print('Content-Disposition: attachment; filename=proxy.json\n')
 }
 '''
 
-print(json.dumps(proxys))
+print(json.dumps(proxys, sort_keys=True, indent=4,separators=(',', ': ')))
