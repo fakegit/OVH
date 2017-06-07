@@ -9,7 +9,7 @@ script: pytest
 before_deploy:
   - git config --global user.email "thomasnicollet@yahoo.fr"
   - git config --global user.name "nwmqpa"
-  - export GIT_TAG=$TRAVIS_BRANCH-Python-TRAVIS_PYTHON_VERSION-v$TRAVIS_BUILD_NUMBER
+  - export GIT_TAG=$TRAVIS_BRANCH-Python-$TRAVIS_PYTHON_VERSION-v$TRAVIS_BUILD_NUMBER
   - git tag $GIT_TAG -a -m "Build number $TRAVIS_BUILD_NUMBER"
   - git push -q https://$TAGPERM@github.com/nwmqpa/OVH --tags
   - zip release.zip * -r
