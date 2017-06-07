@@ -1,1 +1,2 @@
-import ovh
+def test_import():
+  import ovh
