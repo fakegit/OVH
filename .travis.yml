@@ -11,7 +11,7 @@ before_deploy:
   - git config --global user.name "nwmqpa"
   - export GIT_TAG=$TRAVIS_BRANCH-0.1.$TRAVIS_BUILD_NUMBER
   - git tag $GIT_TAG -a -m "Build number $TRAVIS_BUILD_NUMBER"
-  - git push -q https://github.com/nwmqpa/OVH --tags
+  - git push -q https://$GITPERM@github.com/nwmqpa/OVH --tags
   - zip release.zip * -r
 deploy:
   provider: releases
