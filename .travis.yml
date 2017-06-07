@@ -7,11 +7,20 @@ install: "pip install -r requirements.txt"
 # command to run tests
 script: pytest
 before_deploy:
-  - "zip release.zip * -r"
+  - git config --global user.email "thomasnicollet@yahoo.fr"
+  - git config --global user.name "nwmqpa"
+  - export GIT_TAG=$TRAVIS_BRANCH-0.1.$TRAVIS_BUILD_NUMBER
+  - git tag $GIT_TAG -a -m "Build number $TRAVIS_BUILD_NUMBER"
+  - git push -q https://$TAGPERM@github.com/nwmqpa/OVH --tags
+  - zip release.zip * -r
 deploy:
   provider: releases
-  api_key: "826469b6d7d4ca246909c5d3902bd22b99828dd5"
+  api_key: $GITPERM
   file: "release.zip"
   skip_cleanup: true
   on:
     tags: true
+
+branches:
+  except:
+    - /^*-v[0-9]/
