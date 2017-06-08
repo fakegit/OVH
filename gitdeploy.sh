@@ -1,6 +1,6 @@
 #!/bin/bash
 str=$( eval "git ls-remote --tags https://github.com/nwmqpa/OVH")
-if echo "$str" | grep 'PYTHON'; then
+if echo "$str" | grep 'v$TRAVIS_BUILD_NUMBER'; then
     exit
 else
   git config --global user.email "$BUILDEREMAIL"
